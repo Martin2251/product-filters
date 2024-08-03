@@ -4,7 +4,9 @@ import {ChevronDown} from 'lucide-react'
 
 //never changing useful convection 
 const SORT_OPTIONS = [
-  {name:"none", value:"none"}
+  {name:"None", value:"none"},
+  {name:"Price: Low to High", value:"price-asc"},
+  {name:"Price: High to Low", value:"price-desc"},
 ]
 
 export default function Home() {

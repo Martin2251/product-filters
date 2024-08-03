@@ -1,6 +1,9 @@
+"use client"
+
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import {ChevronDown} from 'lucide-react'
+import { useState } from "react";
 
 //never changing useful convection 
 const SORT_OPTIONS = [
@@ -11,6 +14,10 @@ const SORT_OPTIONS = [
 // typescript knows this is an array and string values it never changes YOU WONT BE ABLE TO PUSH ANYMORE
 
 export default function Home() {
+
+  const [filter,setFilter] =useState({
+    sort:"none",
+  })
   return (
 <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
   <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
@@ -24,6 +31,16 @@ export default function Home() {
       <ChevronDown className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"  />
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end">
+      {SORT_OPTIONS.map((option) =>(
+        <button key={option.name} onClick={() =>{
+          setFilter((prev) => ({
+            ...prev,
+            sort:option.value,
+          }
+
+          ))
+        }}></button>
+      ))}
 
       
     </DropdownMenuContent>

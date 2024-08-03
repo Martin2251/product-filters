@@ -7,7 +7,8 @@ const SORT_OPTIONS = [
   {name:"None", value:"none"},
   {name:"Price: Low to High", value:"price-asc"},
   {name:"Price: High to Low", value:"price-desc"},
-]
+] as const 
+// typescript knows this is an array and string values it never changes YOU WONT BE ABLE TO PUSH ANYMORE
 
 export default function Home() {
   return (

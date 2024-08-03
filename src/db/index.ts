@@ -6,6 +6,7 @@ type Product = {
     name:string,
     size: "S" | "M" | "L"
     color:"white" | "beige" | "blue" | "green" | "purple"
+    price: number
 }
 
 export const db = new Index <Product>()

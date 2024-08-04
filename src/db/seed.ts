@@ -8,6 +8,7 @@ const getRandomPrice = () => {
   return PRICES[Math.floor(Math.random() * PRICES.length)]
 }
 
+//colors you have defined
 const COLORS = ['white', 'beige', 'blue', 'green', 'purple'] as const
 const SIZES = ['S', 'M', 'L'] as const
 

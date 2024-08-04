@@ -10,6 +10,7 @@ const getRandomPrice = () => {
 
 //colors you have defined
 const COLORS = ['white', 'beige', 'blue', 'green', 'purple'] as const
+// array will never change
 const SIZES = ['S', 'M', 'L'] as const
 
 const seed = async () => {

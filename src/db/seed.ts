@@ -49,7 +49,7 @@ const seed = async () => {
     green: 3,
     purple: 4,
   }
-
+//   pushing to db here 
   await db.upsert(
     products.map((product) => ({
       id: product.id,

@@ -8,7 +8,8 @@ import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios"
 import { QueryResult } from "@upstash/vector";
-import { Product } from "@/db";
+import type { Product as TProduct } from "@/db";
+import Product from "@/components/Products/Product";
 
 //never changing useful convection 
 const SORT_OPTIONS = [
@@ -27,7 +28,7 @@ export default function Home() {
   const {data:products} = useQuery({
     queryKey:["products"],
     queryFn: async () => {
-      const {data} =  await axios.post<QueryResult<Product>[]>(
+      const {data} =  await axios.post<QueryResult<TProduct>[]>(
         "http://localhost:3000/api/products",{
           filter:{
             sort:filter.sort
@@ -85,9 +86,9 @@ export default function Home() {
     <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
       {/* {filters} */}
       <ul className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {products?.map(() =>{
-          <Product  />
-        })}
+       {products?.map((product) => (
+        <Product product={product.metadata!} key={product.id} />
+       ))}
       </ul>
 
 

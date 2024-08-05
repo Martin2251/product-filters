@@ -13,7 +13,7 @@ const Product = ({product}:{product:Product}) => {
                 {product.name}
             </h3>
             <p className="mt-1 text-sm text-gray-500">
-                Size{product.size.toUpperCase()}, {product.color}
+                Size {product.size.toUpperCase()}, {product.color}
             </p>
         </div>
         <p className="text-sm font-medium text-gray-900">{product.price} </p>

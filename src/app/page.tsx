@@ -25,7 +25,7 @@ const SORT_OPTIONS = [
 const COLOR_FILTERS ={
   id:"color",
   name:"Color",
-  options:[~
+  options:[
     {value:"white", label:"White"},
     {value:"beige", label:"Beige"},
     {value:"blue", label:"Blue"},
@@ -130,9 +130,12 @@ export default function Home() {
               </AccordionTrigger>
               <AccordionContent className="pt-6 animate-none">
                 <ul className="space-y-4">
-                  {COLOR_FILTERS.options.map((option,optionIdx)=>(
+                  {COLOR_FILTERS.options.map((option, optionIdx)=>(
                     <li key={option.value} className="flex items-center">
                       <input type="checkbox" id={`color${optionIdx}`} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"  />
+                      <label htmlFor={`color${optionIdx}`} className="ml-3 text-sm text-gray-600">
+                        {option.label}
+                      </label>
                     </li>
                   ))}
 

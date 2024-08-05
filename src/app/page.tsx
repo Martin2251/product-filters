@@ -94,11 +94,17 @@ export default function Home() {
   <section className="pb-24 pt-6">
     <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
       {/* {filters} */}
-      <div className="hidden lg:block">
+      
+      {/*  hidden lg:block*/}
+      <div className="">
+       
         <ul className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
           {SUBCATEGORIES.map((category) => (
             <li key={category.name}>
-              <button className="disabled:cursor-not-allowed"></button>
+              <button disabled={!category.selected}
+               className="disabled:cursor-not-allowed disabled:opacity-60">
+                {category.name}
+              </button>
             </li>
           ))}
         </ul>

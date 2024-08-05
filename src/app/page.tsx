@@ -10,6 +10,7 @@ import axios from "axios"
 import { QueryResult } from "@upstash/vector";
 import type { Product as TProduct } from "@/db";
 import Product from "@/components/Products/Product";
+import ProductSkeleton from "@/components/Products/ProductSkeleton";
 
 //never changing useful convection 
 const SORT_OPTIONS = [
@@ -86,9 +87,11 @@ export default function Home() {
     <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
       {/* {filters} */}
       <ul className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-       {products?.map((product) => (
+       {products? 
+        products.map((product) => (
         <Product product={product.metadata!} key={product.id} />
-       ))}
+       )):
+       new Array(12).fill(null).map((_, i) =>(<ProductSkeleton key={i} />))}
       </ul>
 
 

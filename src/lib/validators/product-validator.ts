@@ -8,6 +8,6 @@ export const AVAILABLE_SORT =["none", "price-asc", "price-desc"] as const
 export const ProductFilterValidator = z.object({
     size:z.array(z.enum(AVAILABLE_SIZES)),
     color:z.array(z.enum(AVAILABLE_COLORS)),
-    sort: z.enum()
+    sort: z.enum(AVAILABLE_SORT),
 
 })

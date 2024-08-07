@@ -42,13 +42,14 @@ const SUBCATEGORIES = [
 {name: "Accessories", selected: false,href:"#"},
 ]
 
-const DEFAULT_CUSTOM_PRICE = [0,100] as [number,number]
+const DEFAULT_CUSTOM_PRICE = [0,100] as [number,number] 
 
 export default function Home() {
 
   const [filter,setFilter] =useState<ProductState>({
     color:["beige", "blue", "green","purple", "white"],
-    price:{isCustom:false, range:}
+    price:{isCustom:false, range:DEFAULT_CUSTOM_PRICE},
+    size:["L","M","S"],
     sort:"none",
   })
 
@@ -136,7 +137,7 @@ export default function Home() {
                 <ul className="space-y-4">
                   {COLOR_FILTERS.options.map((option, optionIdx)=>(
                     <li key={option.value} className="flex items-center">
-                      <input type="checkbox" id={`color${optionIdx}`} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"  />
+                      <input type="checkbox" id={`color${optionIdx}`} onChange={()=>{}}className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"  />
                       <label htmlFor={`color${optionIdx}`} className="ml-3 text-sm text-gray-600">
                         {option.label}
                       </label>

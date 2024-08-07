@@ -9,5 +9,6 @@ export const ProductFilterValidator = z.object({
     size:z.array(z.enum(AVAILABLE_SIZES)),
     color:z.array(z.enum(AVAILABLE_COLORS)),
     sort: z.enum(AVAILABLE_SORT),
+    price:z.tuple([z.number(), z.number()])
 
 })

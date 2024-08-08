@@ -82,6 +82,13 @@ export default function Home() {
         [category]:prev[category].filter((v) => v !== value)
 
       }))
+    }else {
+      // add it to the array
+      setFilter((prev) =>({
+        //spread it 
+        ...prev,
+        [category]: [...prev[category],value]
+      }))
     }
 
     

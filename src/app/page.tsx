@@ -212,7 +212,7 @@ export default function Home() {
                           value:option.value
                         })
                       }}
-                      checked={filter.color.includes(option.value)}
+                      checked={filter.size.includes(option.value)}
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"  />
                       <label htmlFor={`size${optionIdx}`} className="ml-3 text-sm text-gray-600">
                         {option.label}

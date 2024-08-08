@@ -67,6 +67,16 @@ export default function Home() {
     }
   })
 
+  const applyArrayFilter = ({
+    category,value}:{
+      category:keyof Omit<typeof filter, "price" | "sort">
+      value: string 
+  }) => {
+    
+    
+
+  }
+
   console.log(products)
   return (
 <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

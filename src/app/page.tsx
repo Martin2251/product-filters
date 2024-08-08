@@ -72,6 +72,18 @@ export default function Home() {
       category:keyof Omit<typeof filter, "price" | "sort">
       value: string 
   }) => {
+    const isFilterApplied = filter[category].includes(value as never)
+    // we want to remove it from the array
+    if(isFilterApplied){
+      // whatever it was previously and spread it 
+      setFilter((prev) => ({
+        ...prev,
+        // not equal to the value
+        [category]:prev[category].filter((v) => v !== value)
+
+      }))
+    }
+
     
     
 

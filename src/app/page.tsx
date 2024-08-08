@@ -43,8 +43,8 @@ const SIZE_FILTERS ={
     {value:"M", label:"M"},
     {value:"L", label:"L"},
    
-  ] as const,
-}
+  ],
+} as const
 
 const SUBCATEGORIES = [
 {name: "T-Shirts", selected: true,href:"#"},
@@ -214,7 +214,7 @@ export default function Home() {
                       }}
                       checked={filter.color.includes(option.value)}
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"  />
-                      <label htmlFor={`color${optionIdx}`} className="ml-3 text-sm text-gray-600">
+                      <label htmlFor={`size${optionIdx}`} className="ml-3 text-sm text-gray-600">
                         {option.label}
                       </label>
                     </li>

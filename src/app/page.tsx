@@ -49,7 +49,7 @@ const SIZE_FILTERS ={
 const PRICE_FILTERS = {
   id:"price",
   name:"Price",
-  option:[{value:[0,100],label:"Any price"},{
+  options:[{value:[0,100],label:"Any price"},{
     value: [0,20],
     label:"Under 20£",
 
@@ -250,12 +250,15 @@ export default function Home() {
                   {PRICE_FILTERS.options.map((option, optionIdx)=>(
                     <li key={option.label} className="flex items-center">
                       <input type="checkbox" id={`color${optionIdx}`} onChange={()=>{
-                        applyArrayFilter({
-                          category:"size",
-                          value:option.value
-                        })
+                       setFilter((prev) =>({
+                        ...prev,
+                        price:{
+                          isCustom:false,
+                          range:[...option.value]
+                        }
+                       }))
                       }}
-                      checked={filter.size.includes(option.value)}
+                      checked={!filter.price.isCustom && filter.price.range[0] === option.value[0] && filter.price.range[1] === option.value[1] }
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"  />
                       <label htmlFor={`size${optionIdx}`} className="ml-3 text-sm text-gray-600">
                         {option.label}

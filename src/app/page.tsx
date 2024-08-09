@@ -58,6 +58,7 @@ const PRICE_FILTERS = {
     value: [0,40],
     label:"Under 40£",
   }
+  // custom option in jsx
 ]
 
 } as const
@@ -222,7 +223,7 @@ export default function Home() {
                 <ul className="space-y-4">
                   {SIZE_FILTERS.options.map((option, optionIdx)=>(
                     <li key={option.value} className="flex items-center">
-                      <input type="checkbox" id={`color${optionIdx}`} onChange={()=>{
+                      <input type="checkbox" id={`size${optionIdx}`} onChange={()=>{
                         applyArrayFilter({
                           category:"size",
                           value:option.value
@@ -246,8 +247,8 @@ export default function Home() {
               </AccordionTrigger>
               <AccordionContent className="pt-6 animate-none">
                 <ul className="space-y-4">
-                  {SIZE_FILTERS.options.map((option, optionIdx)=>(
-                    <li key={option.value} className="flex items-center">
+                  {PRICE_FILTERS.options.map((option, optionIdx)=>(
+                    <li key={option.label} className="flex items-center">
                       <input type="checkbox" id={`color${optionIdx}`} onChange={()=>{
                         applyArrayFilter({
                           category:"size",

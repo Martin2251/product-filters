@@ -53,7 +53,12 @@ const PRICE_FILTERS = {
     value: [0,20],
     label:"Under 20£",
 
-  }]
+  },
+  {
+    value: [0,40],
+    label:"Under 40£",
+  }
+]
 
 } as const
 

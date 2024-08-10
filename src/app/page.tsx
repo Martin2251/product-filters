@@ -97,7 +97,8 @@ export default function Home() {
     }
   })
 
-  const minPrice = Math.min
+  const minPrice = Math.min(filter.price.range[0], filter.price.range[1])
+  const maxPrice = Math.min(filter.price.range[0], filter.price.range[1])
 
   const applyArrayFilter = ({
     category,value}:{

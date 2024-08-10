@@ -99,7 +99,7 @@ export default function Home() {
   })
 
   const minPrice = Math.min(filter.price.range[0], filter.price.range[1])
-  const maxPrice = Math.min(filter.price.range[0], filter.price.range[1])
+  const maxPrice = Math.max(filter.price.range[0], filter.price.range[1])
 
   const applyArrayFilter = ({
     category,value}:{
@@ -291,7 +291,7 @@ export default function Home() {
                         <div>
                           {/* show the lower end of the price range*/}
                           {filter.price.isCustom ? minPrice.toFixed(0): filter.price.range[0].toFixed(0) } £ ={``}
-                          {filter.price.isCustom ? maxPrice.toFixed(0) : filter.price.range[1].toFixed(0)} £
+                          {filter.price.isCustom ? maxPrice.toFixed(0): filter.price.range[1].toFixed(0)} £
                         </div>
                       </div>
                       <Slider className={cn({

@@ -298,7 +298,8 @@ export default function Home() {
                         'opacity-50' : !filter.price.isCustom
                       })} 
                       disabled={!filter.price.isCustom}
-                      onValueChange={}
+                      // onValueChange={""}
+                      value={filter.price.isCustom ? filter.price.range : DEFAULT_CUSTOM_PRICE}
                       />
                     </li>
                 </ul>

@@ -97,6 +97,8 @@ export default function Home() {
     }
   })
 
+  const minPrice = Math.min
+
   const applyArrayFilter = ({
     category,value}:{
       category:keyof Omit<typeof filter, "price" | "sort">
@@ -249,7 +251,7 @@ export default function Home() {
                 <ul className="space-y-4">
                   {PRICE_FILTERS.options.map((option, optionIdx)=>(
                     <li key={option.label} className="flex items-center">
-                      <input type="radio" id={`color${optionIdx}`} onChange={()=>{
+                      <input type="radio" id={`price${optionIdx}`} onChange={()=>{
                        setFilter((prev) =>({
                         ...prev,
                         price:{
@@ -260,12 +262,36 @@ export default function Home() {
                       }}
                       checked={!filter.price.isCustom && filter.price.range[0] === option.value[0] && filter.price.range[1] === option.value[1] }
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"  />
-                      <label htmlFor={`size${optionIdx}`} className="ml-3 text-sm text-gray-600">
+                      <label htmlFor={`price${optionIdx}`} className="ml-3 text-sm text-gray-600">
                         {option.label}
                       </label>
                     </li>
                   ))}
-
+                    <li className="flex justify-center flex-col gap-2">
+                      <div>
+                      <input type="radio" id={`price${PRICE_FILTERS.options.length}`} onChange={()=>{
+                       setFilter((prev) =>({
+                        ...prev,
+                        price:{
+                          isCustom:true,
+                          range:[0,100]
+                        }
+                       }))
+                      }}
+                      checked={filter.price.isCustom}
+                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"  />
+                      <label htmlFor={`price${PRICE_FILTERS.options.length}`} className="ml-3 text-sm text-gray-600">
+                       Custom
+                      </label>
+                      </div>
+                      <div className="flex justify-between ">
+                        <p className="font-medium">Price</p>
+                        <div>
+                          {/* show the lower end of the price range*/}
+                          {filter.price.isCustom ? }
+                        </div>
+                      </div>
+                    </li>
                 </ul>
 
               </AccordionContent>

@@ -15,6 +15,7 @@ import ProductSkeleton from "@/components/Products/ProductSkeleton";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ProductState } from "@/lib/validators/product-validator";
 import { Slider } from "@/components/ui/slider";
+import { sign } from "crypto";
 
 //never changing useful convection 
 const SORT_OPTIONS = [
@@ -90,7 +91,10 @@ export default function Home() {
       const {data} =  await axios.post<QueryResult<TProduct>[]>(
         "http://localhost:3000/api/products",{
           filter:{
-            sort:filter.sort
+            sort:filter.sort,
+            color:filter.color,
+            price:filter.price,
+            size:filter.size,
           }
         }
       )

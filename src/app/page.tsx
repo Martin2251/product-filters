@@ -298,8 +298,24 @@ export default function Home() {
                         'opacity-50' : !filter.price.isCustom
                       })} 
                       disabled={!filter.price.isCustom}
-                      // onValueChange={""}
+                      onValueChange={(range) =>{
+                        const [newMin,newMax] = range
+                        setFilter((prev) => ({
+                          ...prev,
+                          price:{
+                            isCustom:true,
+                            range:[newMin,newMax]
+
+                        }
+
+                      }))
+                      }}
                       value={filter.price.isCustom ? filter.price.range : DEFAULT_CUSTOM_PRICE}
+                      min={DEFAULT_CUSTOM_PRICE[0]}
+                      defaultValue={DEFAULT_CUSTOM_PRICE}
+                      max={DEFAULT_CUSTOM_PRICE[1]}
+                      // can be lower if your doing dollar
+                      step={5}
                       />
                     </li>
                 </ul>

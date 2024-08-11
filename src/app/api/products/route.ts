@@ -4,6 +4,16 @@ import { NextRequest } from "next/server"
 
 class Filter {
     private filters:Map<string , string[]> = new Map()
+    // 4 DIFFERENT METHODS
+    hasFilters(){
+        return this.filters.size > 0    
+    }
+    add(key:string, operator:string, value:string | number){
+        const filter = this.filters.get(key) || []
+        // color = white 
+        filter.push(`${key} ${operator} ${typeof value === "number" ? value:`"${value}` }`)
+        this.filters.set(key, filter)
+    }
 }
 
 export const POST = async (req:NextRequest) =>{

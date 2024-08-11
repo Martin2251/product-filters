@@ -8,12 +8,14 @@ class Filter {
     hasFilters(){
         return this.filters.size > 0    
     }
-    add(key:string, operator:string, value:string | number){
+    add(key: string, operator: string, value: string | number) {
         const filter = this.filters.get(key) || []
-        // color = white 
-        filter.push(`${key} ${operator} ${typeof value === "number" ? value:`"${value}` }`)
+        filter.push(
+          `${key} ${operator} ${typeof value === 'number' ? value : `"${value}"`}`
+        )
         this.filters.set(key, filter)
-    }
+      }
+      
     addRaw(key:string, rawFilter:string){
         this.filters.set(key, [rawFilter])
     }
@@ -27,6 +29,9 @@ class Filter {
         return parts.join(` AND `)
     }
 }
+
+const AVG_PRODUCT_PRICE = 25
+const MAX_PRODUCT_PRICE = 50
 
 export const POST = async (req:NextRequest) =>{
 
@@ -43,7 +48,7 @@ export const POST = async (req:NextRequest) =>{
     // database expects format of color="white" OR color="beige" AND size="L"
     const products = await db.query({
         topK:12,
-        vector:[0,0,0],
+        vector:[0,0,sort === "none" ? AVG_PRODUCT_PRICE : sort === "price-asc" ? 0 :MAX_PRODUCT_PRICE],
         includeMetadata:true,
         filter:filter.hasFilters() ? filter.get() : undefined
     })

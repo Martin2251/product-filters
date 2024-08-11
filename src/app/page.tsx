@@ -3,7 +3,7 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import {ChevronDown,Filter} from 'lucide-react'
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios"
@@ -15,7 +15,7 @@ import ProductSkeleton from "@/components/Products/ProductSkeleton";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ProductState } from "@/lib/validators/product-validator";
 import { Slider } from "@/components/ui/slider";
-import { sign } from "crypto";
+import debounce from "lodash.debounce"
 
 //never changing useful convection 
 const SORT_OPTIONS = [
@@ -102,6 +102,10 @@ export default function Home() {
     }
   })
 
+  const onSubmit = () => refetch()
+
+  const debouncedSubmit = debounce(onSubmit, 400)
+  const _debouncedSubmit = useCallback(debouncedSubmit, [])
 
 
   const applyArrayFilter = ({
@@ -127,9 +131,9 @@ export default function Home() {
         [category]: [...prev[category],value]
       }))
     }
-
+    debouncedSubmit()
     
-    
+    onSubmit()
 
   }
   const minPrice = Math.min(filter.price.range[0], filter.price.range[1])
@@ -313,6 +317,7 @@ export default function Home() {
                         }
 
                       }))
+                      debouncedSubmit()
                       }}
                       value={filter.price.isCustom ? filter.price.range : DEFAULT_CUSTOM_PRICE}
                       min={DEFAULT_CUSTOM_PRICE[0]}

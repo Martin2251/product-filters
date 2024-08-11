@@ -16,6 +16,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { ProductState } from "@/lib/validators/product-validator";
 import { Slider } from "@/components/ui/slider";
 import debounce from "lodash.debounce"
+import EmptyState from "@/components/Products/EmptyState";
 
 //never changing useful convection 
 const SORT_OPTIONS = [
@@ -337,18 +338,20 @@ export default function Home() {
           </Accordion>
 
       </div>
-      <ul className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-       {products? 
-        products.map((product) => (
-        <Product product={product.metadata!} key={product.id} />
-       )):
-       new Array(12).fill(null).map((_, i) =>(<ProductSkeleton key={i} />))}
-      </ul>
-
-
-    </div>
-  </section>
-
-</main>
-  );
+  {/* Product grid */}
+  <ul className='lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8'>
+            {products && products.length === 0 ? (
+              <EmptyState />
+            ) : products ? (
+              products.map((product) => <Product product={product.metadata!}  />)
+            ) : (
+              new Array(12)
+                .fill(null)
+                .map((_, i) => <ProductSkeleton key={i} />)
+            )}
+          </ul>
+        </div>
+      </section>
+    </main>
+  )
 }

@@ -169,6 +169,7 @@ export default function Home() {
           }
 
           ))
+          _debouncedSubmit()
         }}>{option.name}</button>
       ))}
 
@@ -269,6 +270,7 @@ export default function Home() {
                           range:[...option.value]
                         }
                        }))
+                       _debouncedSubmit()
                       }}
                       checked={!filter.price.isCustom && filter.price.range[0] === option.value[0] && filter.price.range[1] === option.value[1] }
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"  />
@@ -287,6 +289,7 @@ export default function Home() {
                           range:[0,100]
                         }
                        }))
+                       _debouncedSubmit()
                       }}
                       checked={filter.price.isCustom}
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"  />

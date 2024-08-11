@@ -15,7 +15,7 @@ class Filter {
         )
         this.filters.set(key, filter)
       }
-      
+
     addRaw(key:string, rawFilter:string){
         this.filters.set(key, [rawFilter])
     }
@@ -35,6 +35,7 @@ const MAX_PRODUCT_PRICE = 50
 
 export const POST = async (req:NextRequest) =>{
 
+   try{
     const body =  await req.json()
 
     const {color,price,size,sort} = ProductFilterValidator.parse(body.filter)
@@ -54,4 +55,13 @@ export const POST = async (req:NextRequest) =>{
     })
 
     return new Response(JSON.stringify(products))
+
+   } catch(err){
+    // ie logging error to sentry 
+    console.error(err)
+    return new Response(JSON.stringify({message:"Internal Server Error"}),{
+        status:500
+    })
+
+   }
 }

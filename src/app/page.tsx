@@ -85,7 +85,7 @@ export default function Home() {
 
   console.log(filter)
 
-  const {data:products} = useQuery({
+  const { data:products ,refetch} = useQuery({
     queryKey:["products"],
     queryFn: async () => {
       const {data} =  await axios.post<QueryResult<TProduct>[]>(
